@@ -1,7 +1,8 @@
-import { CRUD } from '../interfaces/crud.interface';
+import { CRUD } from '../../common/interfaces/crud.interface';
 import { UserDto } from '../../users/dto/users.model';
 import UsersDao from '../../users/daos/users.dao';
 import usersDao from '../../users/daos/users.dao';
+import e from 'express';
 
 class UsersService implements CRUD {
     private static instance: UsersService;
@@ -37,6 +38,9 @@ class UsersService implements CRUD {
         return await usersDao.patchUserById(resourceId);
     }
     
+    async getUserByEmail(email: string) {
+        return await usersDao.getUserByEmail(email);
+    }
 }
 
 export default UsersService.getInstance();

@@ -46,12 +46,12 @@ app.get('/', (req: express.Request, res: express.Response) => {
 });
 
 app.route(`/users`)
-            .get((req: express.Request, res: express.Response) => {
-                res.status(200).send(`List of users`);
-            })
-            .post((req: express.Request, res: express.Response) => {
-                res.status(200).send(`Post to users`);
-            });
+    .get((req: express.Request, res: express.Response) => {
+        res.status(200).send(`List of users`);
+    })
+    .post((req: express.Request, res: express.Response) => {
+        res.status(200).send(`Post to users`);
+    });
 
 server.listen(port, () => {
     debugLog(`Server running at http://localhost:${port}`);
