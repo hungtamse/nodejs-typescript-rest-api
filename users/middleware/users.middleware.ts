@@ -34,6 +34,7 @@ class UsersMiddleware {
     async validateSameEmailBelongToSameUser(req: express.Request, res: express.Response,
         next: express.NextFunction) {
         const user = await usersService.getUserByEmail(req.body.email);
+        log('user');
         log(user);
         if (user && user.id === req.params.userId) {
             next();

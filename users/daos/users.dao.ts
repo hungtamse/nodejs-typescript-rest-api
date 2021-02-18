@@ -43,15 +43,13 @@ class UsersDao {
     }
 
     async patchUserById(user: UserDto) {
-        const objIndex = this.users.findIndex((obj: {id: string;}) => {
-            obj.id === user.id;
-        });
+        const objIndex = this.users.findIndex((obj: {id: string;}) => obj.id === user.id);
         let currentUser = this.users[objIndex];
         const allowedPatchFields = ["password", "firstName", "lastName", "permissionLevel"];
         for (let field of allowedPatchFields) {
             if (field in user) {
                 // @ts-ignore
-                currentUser['field'] = user['field'];
+                currentUser[field] = user[field];
             }
         }
         this.users.splice(objIndex, 1, currentUser);
@@ -67,9 +65,11 @@ class UsersDao {
     }
 
     async getUserByEmail(email: string) {
-        const objIndex = this.users.findIndex((obj: {email: string;}) => {
-            obj.email === email;
-        });
+        const objIndex = this.users.findIndex((obj: {email: string;}) => obj.email === email);
+        log('users');
+        log(this.users);
+        log('objIndex');
+        log(objIndex);
         let currentUser = this.users[objIndex];
         if (currentUser) {
             return currentUser;
